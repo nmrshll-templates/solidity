@@ -37,11 +37,13 @@
         ];
 
         env = {
-          RUST_BACKTRACE = "1";
+          REPORT_GAS = true;
         };
 
         scripts = with pkgs; [
-          (writeScriptBin "utest" ''echo testing'')
+          (writeScriptBin "utest" ''npx hardhat test'')
+          (writeScriptBin "hnode" ''npx hardhat node'')
+          (writeScriptBin "deploy" ''npx hardhat ignition deploy ./ignition/modules/Lock.ts'')
         ];
 
       in
